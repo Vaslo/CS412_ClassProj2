@@ -1,5 +1,18 @@
 #input_list = ['all', 'this', 'happened', 'more', 'or', 'less']
 
+target = open("small_sample.txt")
+
+myList = []
+
+for line in target:
+    tempList = line.split()
+    myList.append(tempList)
+
+print(myList)
+
+minSupport = 0.01
+support = int(minSupport*len(myList))
+
 def convertStringToList(string):
     tempList = []
     tempList = string.split()
@@ -23,15 +36,15 @@ def find_bigrams(input_list):
 #zipped
 
 
-phrase1 = 'hoagie institution walking doe seem like throwback year ago old fashioned menu board booth large selection food speciality italian hoagie voted best area year year usually order burger patty obviously cooked frozen ingredient fresh overall good alternative subway road'
-phrase2 = 'excellent food superb customer service miss mario machine used still great place steeped tradition'
+#phrase1 = 'hoagie institution walking doe seem like throwback year ago old fashioned menu board booth large selection food speciality italian hoagie voted best area year year usually order burger patty obviously cooked frozen ingredient fresh overall good alternative subway road'
+#phrase2 = 'excellent food superb customer service miss mario machine used still great place steeped tradition'
 
-fixedPhrase = phrase1.split()
+#fixedPhrase = phrase1.split()
 #print(fixedPhrase)
 
-bigram = find_bigrams(fixedPhrase)
-unigram = find_unigrams(fixedPhrase)
-print(list(bigram))
-print(list(unigram))
+#bigram = find_bigrams(fixedPhrase)
+#unigram = find_unigrams(fixedPhrase)
+#print(list(bigram))
+#print(list(unigram))
 
 
