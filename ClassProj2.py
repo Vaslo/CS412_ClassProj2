@@ -1,4 +1,4 @@
-#input_list = ['all', 'this', 'happened', 'more', 'or', 'less']
+
 
 target = open("small_sample.txt")
 
@@ -8,25 +8,64 @@ for line in target:
     tempList = line.split()
     myList.append(tempList)
 
-print(myList)
+def find_bigrams(input_list):
+  bigram_list = []
+  for i in range(len(input_list)-1):
+      bigram_list.append((input_list[i], input_list[i+1]))
+  return bigram_list
+
+#print(myList)
 
 minSupport = 0.01
 support = int(minSupport*len(myList))
 
-def convertStringToList(string):
-    tempList = []
-    tempList = string.split()
-    return tempList
-
-def find_unigrams(input_list):
-    return input_list
+newList = []
+for smallList in myList:
+    bigrams = find_bigrams(smallList)
+    newList.append(bigrams)
     
+print(newList)
+
+#zipped = zip(myList, myList[1:])
+
+#print(list(zipped))
+
+input_list = ['all', 'this', 'happened', 'more', 'or', 'less']
+
+
+#bigrams = find_bigrams(input_list)
+#print(bigrams)
+
+find_bigrams(input_list)
+
+#def find_trigrams(input_list):
+#  bigram_list = []
+#  for i in range(len(input_list)-2):
+#      bigram_list.append((input_list[i], input_list[i+1],input_list[i+2]))
+#  return bigram_list
+
+#trigrams = find_trigrams(input_list)
+#print(trigrams)
+
+find_bigrams(input_list)
+#def find_bigrams(input_list):
+#    for item in list:
+#        print(list(zip(input_list, input_list[1:])))
+
+#def find_bigrams(input_list):
+#    for item in list:
+#        print(list(item))
+     
+  
+
+
+#for list in myList:
+    #bigramList = zip(list,list[1:])
+
+#print(list(bigramList))
+
+
     
-
-
-def find_bigrams(input_list):
-  return zip(input_list, input_list[1:])
-
 #ngram = zip(input_list, input_list[1:], input_list[2:])
 
 #x = [1,2,3]
@@ -42,7 +81,8 @@ def find_bigrams(input_list):
 #fixedPhrase = phrase1.split()
 #print(fixedPhrase)
 
-#bigram = find_bigrams(fixedPhrase)
+#bigram = find_bigrams(myList)
+#find_bigrams(myList)
 #unigram = find_unigrams(fixedPhrase)
 #print(list(bigram))
 #print(list(unigram))
