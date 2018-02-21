@@ -8,6 +8,12 @@ for line in target:
     tempList = line.split()
     myList.append(tempList)
 
+def find_unigrams(input_list):
+  unigram_list = []
+  for item in input_list:
+      unigram_list = list(set(input_list))
+  return unigram_list
+
 def find_bigrams(input_list):
   bigram_list = []
   for i in range(len(input_list)-1):
@@ -23,6 +29,13 @@ def find_trigrams(input_list):
 
 minSupport = 0.01
 support = int(minSupport*len(myList))
+
+uniList = []
+for smallList in myList:
+    unigrams = find_unigrams(smallList)
+    uniList.append(unigrams)
+
+#print(uniList[0:10])
 
 biList = []
 for smallList in myList:
@@ -44,10 +57,14 @@ def addToDictionary(list):
             tempDict[item] = tempDict[item] + 1
     return tempDict
 
+uniDict = addToDictionary(uniList)
 biDict = addToDictionary(biList)
 triDict = addToDictionary(triList)
 
 #print(masterDict)
+
+unigramDict = {}
+unigramDict = { k:v for k, v in uniDict.items() if v > 100 }
 
 bigramDict = {}
 bigramDict = { k:v for k, v in biDict.items() if v > 100 }
@@ -60,6 +77,10 @@ trigramDict = { k:v for k, v in triDict.items() if v > 10 }
 #    for key, value in dictionary.items():
 #        print(str(value)+":"+str(key))
 
+def printDictUni(dictionary):
+    for key, value in dictionary.items():
+            print(str(value)+":"+str(key))
+
 def printDictBi(dictionary):
     for key, value in dictionary.items():
             print(str(value)+":"+str(key[0])+";"+str(key[1]))
@@ -69,8 +90,15 @@ def printDictTri(dictionary):
             print(str(value)+":"+str(key[0])+";"+str(key[1]+";"+str(key[2])))
 
 
+printDictUni(unigramDict)
 #printDictBi(bigramDict)
-printDictTri(trigramDict)
+#printDictTri(trigramDict)
+
+def writeDictUni(dictionary,fileName):
+    file = open(fileName, 'w')
+    for key, value in dictionary.items():
+        file.write(str(value)+":"+str(key)+"\n")
+    file.close()
 
 def writeDictBi(dictionary,fileName):
     file = open(fileName, 'w')
@@ -78,6 +106,8 @@ def writeDictBi(dictionary,fileName):
         file.write(str(value)+":"+str(key[0])+";"+str(key[1])+"\n")
     file.close()
 
+
+writeDictUni(unigramDict, 'output2.txt')
 writeDictBi(bigramDict,'output.txt')
 
 
